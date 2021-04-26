@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         riskyGroup: {
             type: DataTypes.ENUM,
-            values: ['Comorbidities', '65+', 'All']
+            values: ['Comorbidities', '65+', 'All', 'None']
         },
         susNumber: {
-            type: DataTypes.INT,
+            type: DataTypes.INT(5),
             allowNull: false
         }
     },
