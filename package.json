@@ -1,12 +1,12 @@
 {
-  "name": "VacinApp",
+  "name": "vacinapp",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/GabrielMotaBLima/VacinApp.git",
   "author": "Guilherme <guilherme.steink@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js --ignore client"
+    "start": "nodemon -L server.js --ignore client"
   },
   "dependencies": {
     "cors": "^2.8.5",
