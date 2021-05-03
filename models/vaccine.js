@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Vaccine = sequelize.define('vaccines', {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
+        },
         description: {
             type: DataTypes.STRING(45),
             allowNull: false
@@ -20,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         {
             classMethods: {
                 associate: (models) => {
-                    Vaccine.belongsTo(models.vaccineWallet)
+                    Vaccine.belongsTo(models.vaccineWallet, {
+                        foreignKey: 'idVaccineWallet',
+                        as: 'vaccineWallet'
+                    })
                 },
                 get(data) {
                     return []

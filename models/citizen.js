@@ -30,19 +30,41 @@ module.exports = (sequelize, DataTypes) => {
         },
         susNumber: {
             type: DataTypes.INT(5),
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         }
     },
         {
             classMethods: {
                 associate: (models) => {
-                    Citizen.hasOne(models.civilStatus)
-                    Citizen.hasOne(models.degree)
-                    Citizen.hasOne(models.ethnicity)
-                    Citizen.hasOne(models.vaccineWallet)
-                    Citizen.hasOne(models.historyAllergies)
-                    Citizen.hasOne(models.religion)
-                    Citizen.hasMany(models.healthPlan)
+                    Citizen.hasOne(models.civilStatus, {
+                        foreignKey: 'idCivilStatus', 
+                        as: 'civilStatus'
+                    })
+                    Citizen.hasOne(models.degree, {
+                        foreignKey: 'idDegree',
+                        as: 'degree'
+                    })
+                    Citizen.hasOne(models.ethnicity, {
+                        foreignKey: 'idEthnicity',
+                        as: 'ethnicity'
+                    })
+                    Citizen.hasOne(models.vaccineWallet, {
+                        foreignKey: 'idVaccineWallet',
+                        as: 'vaccineWallet'
+                    })
+                    Citizen.hasOne(models.historyAllergies, {
+                        foreignKey: 'idHistoryAllergies',
+                        as: 'historyAllergies'
+                    })
+                    Citizen.hasOne(models.religion, {
+                        foreignKey: 'idReligion',
+                        as: 'religion'
+                    })
+                    Citizen.hasMany(models.healthPlan, {
+                        foreignKey: 'idHealthPlan',
+                        as: 'healthPlan'
+                    });
                 },
                 get(data) {
                     return [];
