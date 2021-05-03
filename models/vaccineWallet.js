@@ -8,8 +8,14 @@ module.exports = (sequelize, DataTypes) => {
         {
             classMethods: {
                 associate: (models) => {
-                    VaccineWallet.belongsTo(models.citizen),
-                        VaccineWallet.hasOne(models.vaccine)
+                    VaccineWallet.belongsTo(models.citizen, {
+                        foreignKey: 'citizenSusNumber',
+                        as: 'citizen'
+                    }),
+                        VaccineWallet.hasOne(models.vaccine, {
+                            foreignKey: 'idVaccine',
+                            as: 'vaccine'
+                        })
                 },
                 get(data) {
                     return []
