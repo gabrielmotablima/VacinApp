@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ethnicitys', { 
+    await queryInterface.createTable('civilStatus', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -10,11 +10,11 @@ module.exports = {
         primaryKey: true
       },
       description: {
-          type: DataTypes.STRING(45),
-          allowNull: false
+        type: Sequelize.STRING(45),
+        allowNull: false
       },
       citizenSusNumber: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER(5),
         allowNull: false,
         references: {
           model: 'citizens', 
@@ -23,18 +23,18 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updateAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ethnicitys');
+    await queryInterface.dropTable('civilStatus');
   }
 };

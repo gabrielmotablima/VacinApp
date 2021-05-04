@@ -1,29 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-    const Allergy = sequelize.define('allergys', {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true
-        },
+    const Allergy = sequelize.define('allergies', {
         description: {
             type: DataTypes.STRING(45),
             allowNull: false
         }
-    },
-        {
-            classMethods: {
-                associate: (models) => {
-                    Allergy.belongsTo(models.historyAllergies, {
-                        foreignKey: 'idHistoryAllergies',
-                        as: 'historyAllergies'
-                    })
-                },
-                get(data) {
-                    return []
-                }
-            }
-        }
-    )
+        }, {});
+        Allergy.associate = (models) => {
+            Allergy.belongsTo(models.historyAllergies, {
+                foreignKey: 'idHistoryAllergies',
+                as: 'historyAllergies'
+            })
+        };
     return Allergy
 }

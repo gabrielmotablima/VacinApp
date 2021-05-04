@@ -2,7 +2,6 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    
     await queryInterface.createTable('vaccines', {
       id: {
         type: Sequelize.INTEGER,
@@ -11,42 +10,40 @@ module.exports = {
         primaryKey: true
       }, 
       description: {
-        type: DataTypes.STRING(45),
+        type: Sequelize.STRING(45),
         allowNull: false
       },
       type: {
-          type: DataTypes.INT,
+          type: Sequelize.INTEGER,
           allowNull: false
       },
       date: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: false
       },
       nextDate: {
-          type: DataTypes.DATE,
+          type: Sequelize.DATE,
           allowNull: true
       },
       idVaccineWallet: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'vaccines', 
+          model: 'vaccineWallets', 
           key: 'idDose'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updateAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      
      });
-     
   },
 
   down: async (queryInterface, Sequelize) => {

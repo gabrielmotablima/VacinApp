@@ -1,11 +1,5 @@
 module.exports = (sequelize) => {
     const HistoryAllergy = sequelize.define('historyAllergys', {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true
-        },
     },
         {
             classMethods: {

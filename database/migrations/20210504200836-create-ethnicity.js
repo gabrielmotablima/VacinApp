@@ -2,46 +2,39 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('historyAllergies', {
+    await queryInterface.createTable('ethnicitys', { 
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
-      idAllergy: {
-        type: Sequelize.INTEGER,
+      description: {
+          type: Sequelize.STRING(45),
+          allowNull: false
+      },
+      citizenSusNumber: {
+        type: Sequelize.INTEGER(5),
         allowNull: false,
         references: {
-          model: 'allergies', 
-          key: 'id'
+          model: 'citizens', 
+          key: 'susNumber'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-        citizenSusNumber: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          references: {
-            model: 'citizens', 
-            key: 'susNumber'
-          },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-        },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updateAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
     });
-     
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('historyAllergies');
+    await queryInterface.dropTable('ethnicitys');
   }
 };
