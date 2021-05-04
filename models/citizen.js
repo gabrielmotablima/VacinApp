@@ -38,32 +38,32 @@ module.exports = (sequelize, DataTypes) => {
             classMethods: {
                 associate: (models) => {
                     Citizen.hasOne(models.civilStatus, {
-                        foreignKey: 'idCivilStatus', 
+                        foreignKey: 'citizenSusNumber', 
                         as: 'civilStatus'
                     })
                     Citizen.hasOne(models.degree, {
-                        foreignKey: 'idDegree',
+                        foreignKey: 'citizenSusNumber',
                         as: 'degree'
                     })
                     Citizen.hasOne(models.ethnicity, {
-                        foreignKey: 'idEthnicity',
+                        foreignKey: 'citizenSusNumber',
                         as: 'ethnicity'
                     })
                     Citizen.hasOne(models.vaccineWallet, {
-                        foreignKey: 'idVaccineWallet',
+                        foreignKey: 'citizenSusNumber',
                         as: 'vaccineWallet'
                     })
                     Citizen.hasOne(models.historyAllergies, {
-                        foreignKey: 'idHistoryAllergies',
+                        foreignKey: 'citizenSusNumber',
                         as: 'historyAllergies'
                     })
                     Citizen.hasOne(models.religion, {
-                        foreignKey: 'idReligion',
+                        foreignKey: 'citizenSusNumber',
                         as: 'religion'
                     })
                     Citizen.hasMany(models.healthPlan, {
-                        foreignKey: 'idHealthPlan',
-                        as: 'healthPlan'
+                        foreignKey: 'citizenSusNumber',
+                        as: 'healthPlans'
                     });
                 },
                 get(data) {

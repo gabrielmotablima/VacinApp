@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
                         as: 'citizen'
                     }),
                         VaccineWallet.hasOne(models.vaccine, {
-                            foreignKey: 'idVaccine',
-                            as: 'vaccine'
+                            foreignKey: 'idVaccineWallet',
+                            as: 'vaccineWallet'
                         })
                 },
                 get(data) {

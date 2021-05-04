@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
             classMethods: {
                 associate: (models) => {
                     HistoryAllergy.hasMany(models.allergy, {
-                        foreignKey: 'idAllergy',
-                        as: 'allergy'
+                        foreignKey: 'idHistoryAllergies',
+                        as: 'allergies'
                     })
                     HistoryAllergy.belongsTo(models.citizen, {
                         foreignKey: 'citizenSusNumber',
