@@ -4,13 +4,20 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(45),
             allowNull: false
         }
-    }, {});
-                  
-    HealthPlan.associate = (models) => {
-        HealthPlan.belongsTo(models.citizen, {
-            foreignKey: 'citizenSusNumber',
-            as: 'citizen'
-        });
-    };
+    },
+        {
+            classMethods: {
+                associate: (models) => {
+                    HealthPlan.belongsTo(models.citizen, {
+                        foreignKey: 'citizenSusNumber',
+                        as: 'citizen'
+                    })
+                },
+                get(data) {
+                    return []
+                }
+            }
+        }
+    )
     return HealthPlan
 }
