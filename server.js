@@ -1,14 +1,10 @@
 const express = require('express');
 const models = require('./models')
 const sequelize = require('sequelize');
-
 const status = require('./helpers/http-status')
 const cors = require("cors")
 const mysql = require('mysql');
-
 const port = 4040;
-const host = '0.0.0.0';
-
 const app = express();
 
 app.use(cors())
@@ -17,66 +13,42 @@ app.use(express.json())
 /**
  * ROUTES
  */
- const CitizenRoutes = require("./routes/CitizenRoutes")
- app.use('/citizen', CitizenRoutes)
- 
- const AllergyRoutes = require('./routes/AllergyRoutes')
- app.use('/alergy', AllergyRoutes)
- 
- const HealthPlanRoutes = require('./routes/HealthPlanRoutes')
- app.use('/healtPlan', HealthPlanRoutes)
- 
- const ReligionRoutes = require('./routes/ReligionRoutes')
- app.use('/religion', ReligionRoutes)
- 
- const VaccineRoutes = require('./routes/VaccineRoutes');
- const { response } = require('express');
- app.use('/vaccine', VaccineRoutes)
+const CitizenRoutes = require("./routes/CitizenRoutes")
+app.use('/citizen', CitizenRoutes)
 
- /**
-    * CONNECTION MYSQL-DOCKER
-*/
-  app.get('/', (req, res) => {
-    var mysqlHost = process.env.MYSQL_HOST || 'localhost';
-    var mysqlPort = process.env.MYSQL_PORT || '3308';
-    var mysqlUser = process.env.MYSQL_USER || 'root';
-    var mysqlPass = process.env.MYSQL_PASS || 'root';
-    var mysqlDB = process.env.MYSQL_DB || 'vacinapp';
+const AllergyRoutes = require('./routes/AllergyRoutes')
+app.use('/alergy', AllergyRoutes)
 
-    var connectionOptions = {
-        host: mysqlHost,
-        port: mysqlPort,
-        user: mysqlUser,
-        password: mysqlPass,
-        database: mysqlDB
-    };
+const HealthPlanRoutes = require('./routes/HealthPlanRoutes')
+app.use('/healtPlan', HealthPlanRoutes)
 
-    console.log('MySQL Connection config:');
-    console.log(connectionOptions);
+const ReligionRoutes = require('./routes/ReligionRoutes')
+app.use('/religion', ReligionRoutes)
 
-    var connection = mysql.createConnection(connectionOptions);
-    var queryStr = "SELECT * FROM MOE_ITEM_T";
+const VaccineRoutes = require('./routes/VaccineRoutes');
+app.use('/vaccine', VaccineRoutes)
 
-    connection.connect();
+app.listen(port, function (err) {
+    if (err) console.log("Error in server setup")
+    console.log("Server listening on Port", port);
 
-    connection.query(queryStr, function (error, results, fields) {
-        if (error) throw error;
+    app.get('/', (req, res) => {
+        var mysqlHost = process.env.MYSQL_HOST || 'localhost';
+        var mysqlPort = process.env.MYSQL_PORT || '3306';
+        var mysqlUser = process.env.MYSQL_USER || 'root';
+        var mysqlPass = process.env.MYSQL_PASS || 'root';
+        var mysqlDB = process.env.MYSQL_DB || 'vacinapp';
 
-        responseStr = '';
-
-        results.forEach(function (data) {
-            responseStr += data.ITEM_NAME + ' : '
-            console.log(data)
-        })
-
-        if (responseStr.length == 0)
-            responseStr = 'No records found'
-
-        console.log(responseStr)
-
-        res.status(status.success).send(responseStr)
+        var connectionOptions = {
+            host: mysqlHost,
+            port: mysqlPort,
+            user: mysqlUser,
+            password: mysqlPass,
+            database: mysqlDB
+        };
+        console.log('MySQL Connection config:');
+        console.log(connectionOptions);
+        var connection = mysql.createConnection(connectionOptions);
+        connection.connect();
     })
-    connection.end()
 })
-
-app.listen(port, host);

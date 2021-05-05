@@ -10,24 +10,24 @@ module.exports = {
         primaryKey: true
       },
       description: {
-        type: DataTypes.STRING(45),
+        type: Sequelize.STRING(45),
         allowNull: false
       },
       idHistoryAllergies: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'civilStatus', 
+          model: 'historyAllergies', 
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },

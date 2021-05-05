@@ -2,39 +2,51 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ethnicitys', { 
+    await queryInterface.createTable('vaccines', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
-      },
+      }, 
       description: {
-          type: DataTypes.STRING(45),
+        type: Sequelize.STRING(45),
+        allowNull: false
+      },
+      type: {
+          type: Sequelize.INTEGER,
           allowNull: false
       },
-      citizenSusNumber: {
+      date: {
+          type: Sequelize.DATE,
+          allowNull: false
+      },
+      nextDate: {
+          type: Sequelize.DATE,
+          allowNull: true
+      },
+      idVaccineWallet: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'citizens', 
-          key: 'susNumber'
+          model: 'vaccineWallets', 
+          key: 'idDose'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });
+     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ethnicitys');
+    await queryInterface.dropTable('vaccines');
   }
 };

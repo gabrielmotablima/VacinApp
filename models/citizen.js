@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         sex: {
-            type: DataTypes.CHARACTER(1),
+            type: DataTypes.STRING(1),
             allowNull: false
         },
         address: {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
             values: ['Comorbidities', '65+', 'All', 'None']
         },
         susNumber: {
-            type: DataTypes.INT(5),
+            type: DataTypes.INTEGER(5),
             allowNull: false,
             primaryKey: true
         }
@@ -38,32 +38,32 @@ module.exports = (sequelize, DataTypes) => {
             classMethods: {
                 associate: (models) => {
                     Citizen.hasOne(models.civilStatus, {
-                        foreignKey: 'idCivilStatus', 
+                        foreignKey: 'citizenSusNumber', 
                         as: 'civilStatus'
                     })
                     Citizen.hasOne(models.degree, {
-                        foreignKey: 'idDegree',
+                        foreignKey: 'citizenSusNumber',
                         as: 'degree'
                     })
                     Citizen.hasOne(models.ethnicity, {
-                        foreignKey: 'idEthnicity',
+                        foreignKey: 'citizenSusNumber',
                         as: 'ethnicity'
                     })
                     Citizen.hasOne(models.vaccineWallet, {
-                        foreignKey: 'idVaccineWallet',
+                        foreignKey: 'citizenSusNumber',
                         as: 'vaccineWallet'
                     })
                     Citizen.hasOne(models.historyAllergies, {
-                        foreignKey: 'idHistoryAllergies',
+                        foreignKey: 'citizenSusNumber',
                         as: 'historyAllergies'
                     })
                     Citizen.hasOne(models.religion, {
-                        foreignKey: 'idReligion',
+                        foreignKey: 'citizenSusNumber',
                         as: 'religion'
                     })
                     Citizen.hasMany(models.healthPlan, {
-                        foreignKey: 'idHealthPlan',
-                        as: 'healthPlan'
+                        foreignKey: 'citizenSusNumber',
+                        as: 'healthPlans'
                     });
                 },
                 get(data) {

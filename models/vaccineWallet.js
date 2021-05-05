@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const VaccineWallet = sequelize.define('vaccineWallets', {
         idDose: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },
@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
                         as: 'citizen'
                     }),
                         VaccineWallet.hasOne(models.vaccine, {
-                            foreignKey: 'idVaccine',
-                            as: 'vaccine'
+                            foreignKey: 'idVaccineWallet',
+                            as: 'vaccineWallet'
                         })
                 },
                 get(data) {
