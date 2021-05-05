@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const VaccineWallet = sequelize.define('vaccineWallets', {
         idDose: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     },

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         sex: {
-            type: DataTypes.CHARACTER(1),
+            type: DataTypes.STRING(1),
             allowNull: false
         },
         address: {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
             values: ['Comorbidities', '65+', 'All', 'None']
         },
         susNumber: {
-            type: DataTypes.INT(5),
+            type: DataTypes.INTEGER(5),
             allowNull: false,
             primaryKey: true
         }
