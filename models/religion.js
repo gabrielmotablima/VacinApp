@@ -3,6 +3,10 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.STRING(45),
             allowNull: false
+        },
+        citizenSusNumber: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
         {
@@ -10,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
                 associate: (models) => {
                     Religion.belongsTo(models.citizen, {
                         foreignKey: 'citizenSusNumber',
-                        as: 'citizen'
+                        as: 'citizens'
                     })
                 },
                 get(data) {

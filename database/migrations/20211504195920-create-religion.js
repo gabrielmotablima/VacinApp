@@ -16,6 +16,7 @@ module.exports = {
       citizenSusNumber: {
         type: Sequelize.INTEGER(5),
         allowNull: false,
+        defaultValue: 0,
         references: {
           model: 'citizens', 
           key: 'susNumber'

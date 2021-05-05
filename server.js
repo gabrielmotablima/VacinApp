@@ -20,7 +20,7 @@ const AllergyRoutes = require('./routes/AllergyRoutes')
 app.use('/alergy', AllergyRoutes)
 
 const HealthPlanRoutes = require('./routes/HealthPlanRoutes')
-app.use('/healtPlan', HealthPlanRoutes)
+app.use('/healthPlan', HealthPlanRoutes)
 
 const ReligionRoutes = require('./routes/ReligionRoutes')
 app.use('/religion', ReligionRoutes)
