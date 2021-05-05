@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     },
         {
+            freezeTableName: true,
             classMethods: {
                 associate: (models) => {
                     Citizen.hasOne(models.civilStatus, {
