@@ -4,7 +4,9 @@ const _ = require('lodash');
 
 class HealthPlanController {
 
-    async create(req, res) { }
+    async create(req, res) { 
+        const data = req.body
+    }
 
     async update(req, res) { }
 

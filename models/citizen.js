@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
                     })
                     Citizen.hasOne(models.religion, {
                         foreignKey: 'citizenSusNumber',
-                        as: 'religion'
+                        as: 'religions'
                     })
                     Citizen.hasMany(models.healthPlan, {
                         foreignKey: 'citizenSusNumber',
