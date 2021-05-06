@@ -8,13 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        date: {
-            type: DataTypes.DATE,
+        idVaccineWallet: {
+            type: DataTypes.INTEGER,
             allowNull: false
-        },
-        nextDate: {
-            type: DataTypes.DATE,
-            allowNull: true
         }
     },
         {

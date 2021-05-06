@@ -3,24 +3,23 @@ const status = require('../helpers/http-status')
 const _ = require('lodash');
 const clientMysql = require('./Mysql')
 
-
-class VaccineController {
+class VaccineWalletController {
 
     async create(req, res) {
         const data = req.body
-        const idVaccineWallet = _.get(data, 'idVaccineWallet')
-        const vaccineWallet = await clientMysql.vaccineWallets.findByPk(idVaccineWallet)
-        const test = vaccineWallet
-        if (vaccineWallet) {
-            const vaccine = await clientMysql.vaccines.create({
-                description: _.get(data, 'description'),
-                type: _.get(data, 'type'),
-                idVaccineWallet: _.get(vaccineWallet, 'dataValues.id')
+        const susNumber = _.get(data, 'susNumber')
+        const citizen = await clientMysql.citizens.findByPk(susNumber)
+        
+        if (citizen) {
+            const vaccineWallet = await clientMysql.vaccineWallets.create({
+                citizenSusNumber: _.get(citizen, 'dataValues.susNumber'),
+                date: _.get(data, 'date'),
+                nextDate: _.get(data, 'nextDate'),
             })
-            if (vaccine) {
+            if (vaccineWallet) {
                 return res.send({
                     status: status.success,
-                    "vaccine registered": vaccine
+                    "vaccine wallet registered": vaccineWallet
                 })
             }
         }
@@ -42,4 +41,4 @@ class VaccineController {
 
 }
 
-module.exports = new VaccineController()
+module.exports = new VaccineWalletController()

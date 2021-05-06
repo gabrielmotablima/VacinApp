@@ -31,6 +31,9 @@ app.use('/religion', ReligionRoutes)
 const VaccineRoutes = require('./routes/VaccineRoutes');
 app.use('/vaccine', VaccineRoutes)
 
+const VaccineWalletRoutes = require('./routes/VaccineWalletRoutes');
+app.use('/vaccineWallet', VaccineWalletRoutes)
+
 const CivilStatusRoutes = require('./routes/CivilStatusRoutes');
 app.use('/civilstatus', CivilStatusRoutes)
 

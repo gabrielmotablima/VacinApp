@@ -1,6 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
     const VaccineWallet = sequelize.define('vaccineWallets', {
-        idDose: {
+        date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        nextDate: {
+            type: DataTypes.DATE,
+            allowNull: true
+        }, 
+        citizenSusNumber: {
             type: DataTypes.INTEGER,
             allowNull: false
         }

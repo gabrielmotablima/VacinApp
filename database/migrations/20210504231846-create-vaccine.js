@@ -17,20 +17,12 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false
       },
-      date: {
-          type: Sequelize.DATE,
-          allowNull: false
-      },
-      nextDate: {
-          type: Sequelize.DATE,
-          allowNull: true
-      },
       idVaccineWallet: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'vaccineWallets', 
-          key: 'idDose'
+          key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',

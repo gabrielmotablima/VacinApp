@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('vaccineWallets', { 
-      idDose: {
+      id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -18,6 +18,14 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+      },
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      nextDate: {
+          type: Sequelize.DATE,
+          allowNull: true
       },
       createdAt: {
         type: Sequelize.DATE,
