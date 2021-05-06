@@ -3,6 +3,10 @@ module.exports = (sequelize, DataTypes) => {
         level: {
             type: DataTypes.STRING(45),
             allowNull: false
+        },
+        citizenSusNumber: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
         {

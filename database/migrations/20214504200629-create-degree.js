@@ -2,7 +2,17 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('healthPlans', {
+    await queryInterface.createTable('degrees', {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+      },
+      level: {
+        type: Sequelize.STRING(45),
+        allowNull: false
+      },
       citizenSusNumber: {
         type: Sequelize.INTEGER(5),
         allowNull: false,
@@ -11,11 +21,7 @@ module.exports = {
           key: 'susNumber'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      description: {
-          type: Sequelize.STRING(45),
-          allowNull: false
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -25,10 +31,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('healthPlans');
+    await queryInterface.dropTable('degrees'); 
   }
 };

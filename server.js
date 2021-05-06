@@ -19,6 +19,9 @@ app.use('/citizen', CitizenRoutes)
 const AllergyRoutes = require('./routes/AllergyRoutes')
 app.use('/alergy', AllergyRoutes)
 
+const EthnicityRoutes = require('./routes/EthnicityRoutes')
+app.use('/ethnicity', EthnicityRoutes)
+
 const HealthPlanRoutes = require('./routes/HealthPlanRoutes')
 app.use('/healthPlan', HealthPlanRoutes)
 
@@ -27,6 +30,12 @@ app.use('/religion', ReligionRoutes)
 
 const VaccineRoutes = require('./routes/VaccineRoutes');
 app.use('/vaccine', VaccineRoutes)
+
+const CivilStatusRoutes = require('./routes/CivilStatusRoutes');
+app.use('/civilstatus', CivilStatusRoutes)
+
+const DegreeRoutes = require('./routes/DegreeRoutes');
+app.use('/degree', DegreeRoutes)
 
 app.listen(port, function (err) {
     if (err) console.log("Error in server setup")

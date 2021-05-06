@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.STRING(45),
             allowNull: false
+        },
+        citizenSusNumber: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
         {
