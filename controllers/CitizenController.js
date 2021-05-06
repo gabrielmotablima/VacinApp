@@ -3,8 +3,39 @@ const status = require('../helpers/http-status')
 const _ = require('lodash');
 const clientMysql = require('./Mysql')
 
-
 class CitizenController {
+
+    async getAll(req, res) {
+        const citizens = await clientMysql.citizens.findAndCountAll({
+            where: null,
+            order: [
+                ['name', 'ASC'],
+                ['susNumber', 'ASC'],
+            ],
+        })
+        if (citizens) return res.send({
+            "status": status.sucess,
+            "citizens": citizens
+        })
+        else return res.send(status.not_found)
+
+    }
+
+    async getOrderByCpf(req, res) {
+        const citizens = await clientMysql.citizens.findAndCountAll({
+            where: null,
+            order: [
+                ['cpf']
+            ]
+        })
+        if (citizens) return res.send({
+            "status": status.sucess,
+            "citizens": citizens
+        })
+        else return res.send(status.not_found)
+    }
+
+
     /**
      * ESTÁ FUNCIONANDO, ATENÇÃO AO LANÇAR A REQUEST NO POSTMAN PARA NÃO LANÇAR
      * UM SUSNUMBER(PK) QUE JA EXISTA, VAI DAR ERRO
