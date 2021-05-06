@@ -4,10 +4,8 @@ const _ = require('lodash');
 const clientMysql = require('./Mysql')
 
 class CitizenController {
-
     async getAll(req, res) {
         const citizens = await clientMysql.citizens.findAndCountAll({
-            where: null,
             order: [
                 ['name', 'ASC'],
                 ['susNumber', 'ASC'],
@@ -18,12 +16,10 @@ class CitizenController {
             "citizens": citizens
         })
         else return res.send(status.not_found)
-
     }
 
     async getOrderByCpf(req, res) {
         const citizens = await clientMysql.citizens.findAndCountAll({
-            where: null,
             order: [
                 ['cpf']
             ]
@@ -47,8 +43,8 @@ class CitizenController {
         try {
             const data = req.body
             const citizen = await clientMysql.citizens.create(data)
-            if (citizen) return res.sendStatus({
-                status: status.sucess,
+            if (citizen) return res.send({
+                "status": status.sucess,
                 "citizen registered:": citizen
             })
             else return res.send(status.bad_request)
@@ -73,12 +69,12 @@ class CitizenController {
                 }
             })
             if (citizen) return res.send({
-                status: status.sucess,
+                "status": status.sucess,
                 "citizen updated to": citizen
             })
-            else return res.sendStatus(status.bad_request)
+            else return res.send(status.bad_request)
         } catch (error) {
-            return res.sendStatus(status.server_error)
+            return res.send(status.server_error)
         }
     }
 
@@ -100,10 +96,10 @@ class CitizenController {
                 status: status.sucess,
                 "citizen": citizen
             })
-            else return res.sendStatus(status.not_found)
+            else return res.send(status.not_found)
 
         } catch (error) {
-            return res.sendStatus(status.server_error)
+            return res.send(status.server_error)
         }
     }
 
@@ -122,13 +118,13 @@ class CitizenController {
                 }
             })
             if (citizen) return res.send({
-                status: status.sucess,
+                "send": status.sucess,
                 "citizen removed": citizen
             })
-            else return res.sendStatus(status.not_found)
+            else return res.send(status.not_found)
 
         } catch (error) {
-            return res.sendStatus(status.server_error)
+            return res.send(status.server_error)
         }
     }
 }
