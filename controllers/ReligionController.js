@@ -3,6 +3,13 @@ const _ = require('lodash');
 const clientMysql = require('./Mysql')
 
 class ReligionController {
+    
+    /**
+     * funcionando
+     * @param {} req 
+     * @param {*} res 
+     * @returns 
+     */
     async create(req, res) {
         const data = req.body
         const susNumber = _.get(data, 'susNumber')
@@ -32,8 +39,29 @@ class ReligionController {
 
     async getAll(req, res) { }
 
-    async delete(req, res) { }
-
+    /**
+     * funcionando
+     * @param {} req 
+     * @param {*} res 
+     * @returns 
+     */
+    async delete(req, res) {
+        try {
+            const id = req.params.id
+            const religion = await clientMysql.religions.destroy({
+                where: {
+                    id
+                }
+            })
+            if (religion) return res.send({
+                status: status.sucess,
+                "religion removed": religion
+            })
+            else return res.send(status.not_found)
+        } catch (error) {
+            return res.send(status.server_error)
+        }
+    }
 }
 
 module.exports = new ReligionController()

@@ -20,9 +20,9 @@ class CitizenController {
                 status: status.sucess,
                 "citizen registered:": citizen
             })
-            else return res.sendStatus(status.bad_request)
+            else return res.send(status.bad_request)
         } catch (error) {
-            return res.sendStatus(status.server_error)
+            return res.send(status.server_error)
         }
     }
 
@@ -90,7 +90,6 @@ class CitizenController {
                     susNumber
                 }
             })
-
             if (citizen) return res.send({
                 status: status.sucess,
                 "citizen removed": citizen
