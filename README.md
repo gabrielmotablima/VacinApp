@@ -6,7 +6,7 @@
 
 # 📌 Description
 
-Application intended to Databases university subjects with the objective of being a simple CRUD that save vacinations data..
+Application intended to Databases university subjects with the objective of being a simple CRUD that save vacinations data.
 
 ## :book: Technologies
 [![NodeJS](https://img.shields.io/static/v1?label=NodeJS&message=v14.17.0&colorA=339933&color=grey&logo=node-dot-js&logoColor=white)](https://nodejs.org/)
